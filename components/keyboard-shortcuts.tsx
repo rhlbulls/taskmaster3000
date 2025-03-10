@@ -2,7 +2,6 @@
 
 import { useEffect, useCallback } from "react"
 import { useToast } from "@/components/ui/use-toast"
-import { useTaskContext } from "@/contexts/task-context"
 
 interface KeyboardShortcutsProps {
   onAddTask: () => void
@@ -10,7 +9,6 @@ interface KeyboardShortcutsProps {
 }
 
 export default function KeyboardShortcuts({ onAddTask, onFocusSearch }: KeyboardShortcutsProps) {
-  const { setShowStats, clearFilters } = useTaskContext()
   const { toast } = useToast()
 
   const handleKeyDown = useCallback(
@@ -50,11 +48,6 @@ export default function KeyboardShortcuts({ onAddTask, onFocusSearch }: Keyboard
         onAddTask()
       }
 
-      // S to toggle stats
-      if (e.key === "s" || e.key === "S") {
-        e.preventDefault()
-        setShowStats((prev) => !prev)
-      }
 
       // / to focus search
       if (e.key === "/") {
@@ -62,13 +55,8 @@ export default function KeyboardShortcuts({ onAddTask, onFocusSearch }: Keyboard
         onFocusSearch()
       }
 
-      // Esc to clear filters
-      if (e.key === "Escape") {
-        e.preventDefault()
-        clearFilters()
-      }
     },
-    [onAddTask, setShowStats, clearFilters, onFocusSearch, toast],
+    [onAddTask, onFocusSearch, toast],
   )
 
   useEffect(() => {

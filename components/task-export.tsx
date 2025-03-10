@@ -50,9 +50,9 @@ export default function TaskExport({ tasks, onImport }: TaskExportProps) {
       if (!Array.isArray(importedTasks)) {
         throw new Error("Imported data is not an array")
       }
-
+      
       // Validate that each item has required task properties
-      importedTasks.forEach((task: any, index: number) => {
+      importedTasks.forEach((task: Task, index: number) => {
         if (!task.id || !task.title || !task.date) {
           throw new Error(`Task at index ${index} is missing required properties`)
         }

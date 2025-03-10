@@ -35,6 +35,7 @@ export default function TaskForm({ task, onSubmit, onCancel, selectedDate }: Tas
       subTasks: task?.subTasks || [],
       description: task?.description || "",
       links: task?.links || [],
+      position: task?.position || 0,
     }
 
     onSubmit(newTask)

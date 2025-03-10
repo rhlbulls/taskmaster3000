@@ -18,7 +18,7 @@ import { formatTime } from "@/lib/utils"
 interface TaskItemProps {
   task: Task
   onToggleCompletion: (id: string) => void
-  onUpdateTask: (task: Task) => Promise<void>
+  onUpdateTask: (task: Task) => void
   onDeleteTask: (id: string) => void
   onStartTimer: (id: string) => void
   isActive: boolean

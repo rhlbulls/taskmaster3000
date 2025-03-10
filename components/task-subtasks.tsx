@@ -15,7 +15,7 @@ import { useTaskContext } from "@/contexts/task-context"
 
 interface TaskSubtasksProps {
   task: Task
-  onUpdateTask: (task: Task) => Promise<void>
+  onUpdateTask: (task: Task) => void
 }
 
 export default function TaskSubtasks({ task, onUpdateTask }: TaskSubtasksProps) {
