@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button"
 import type { Task, SubTask } from "@/lib/types"
 import { Plus } from "lucide-react"
 import { nanoid } from "nanoid"
-import SubTaskList from "@/components/sub-task-list"
-import { DndContext, closestCenter, type DragEndEvent } from "@dnd-kit/core"
+import { type DragEndEvent } from "@dnd-kit/core"
 import { arrayMove } from "@dnd-kit/sortable"
 import { useTaskContext } from "@/contexts/task-context"
 
@@ -76,10 +75,10 @@ export default function TaskSubtasks({ task, onUpdateTask }: TaskSubtasksProps) 
       const newIndex = task.subTasks.findIndex((st) => `subtask-${task.id}-${st.id}` === over.id)
 
       const newSubTasks = arrayMove(task.subTasks, oldIndex, newIndex)
-
+      
       onUpdateTask({
         ...task,
-        subTasks: newSubTasks,
+        subTasks: Object.values( newSubTasks),
       })
 
       updateSubTaskOrder(task.id, newSubTasks)
@@ -89,15 +88,6 @@ export default function TaskSubtasks({ task, onUpdateTask }: TaskSubtasksProps) 
   return (
     <div className="mt-4 pl-8 border-t border-gray-100 pt-3">
       <div className="space-y-2">
-        <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <SubTaskList
-            subTasks={task.subTasks || []}
-            taskId={task.id}
-            onToggleCompletion={handleSubTaskToggle}
-            onDeleteSubTask={handleSubTaskDelete}
-          />
-        </DndContext>
-
         <form onSubmit={handleAddSubTask} className="flex gap-2 mt-3">
           <Input
             value={newSubTaskTitle}

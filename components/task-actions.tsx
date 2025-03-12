@@ -9,9 +9,7 @@ interface TaskActionsProps {
   onEdit: () => void
   onDelete: () => void
   onToggleDetails: () => void
-  onToggleSubtasks: () => void
   showDetails: boolean
-  expanded: boolean
 }
 
 export default function TaskActions({
@@ -19,9 +17,7 @@ export default function TaskActions({
   onEdit,
   onDelete,
   onToggleDetails,
-  onToggleSubtasks,
   showDetails,
-  expanded,
 }: TaskActionsProps) {
   return (
     <div className="flex flex-wrap items-center gap-2 mt-3">
@@ -52,25 +48,6 @@ export default function TaskActions({
         onClick={onToggleDetails}
       >
         {showDetails ? "Hide details" : "Show details"}
-      </Button>
-
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-7 px-2 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-700 ml-auto"
-        onClick={onToggleSubtasks}
-      >
-        {expanded ? (
-          <>
-            <ChevronUp className="h-3.5 w-3.5 mr-1" />
-            Hide subtasks
-          </>
-        ) : (
-          <>
-            <ChevronDown className="h-3.5 w-3.5 mr-1" />
-            {(task.subTasks?.length || 0) > 0 ? `Subtasks (${task.subTasks?.length})` : "Add subtasks"}
-          </>
-        )}
       </Button>
     </div>
   )
