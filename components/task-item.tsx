@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import type { Task } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import TaskDetails from "@/components/task-details"
-import TaskSubtasks from "@/components/task-subtasks"
 import TaskEditForm from "@/components/task-edit-form"
 import TaskActions from "@/components/task-actions"
 import { useSortable } from "@dnd-kit/sortable"
@@ -36,7 +35,6 @@ export default function TaskItem({
   isTimerRunning,
   listType,
 }: TaskItemProps) {
-  const [expanded, setExpanded] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
 
@@ -141,13 +139,10 @@ export default function TaskItem({
               </div>
 
               <TaskActions
-                task={task}
                 onEdit={() => setIsEditing(true)}
                 onDelete={() => onDeleteTask(task.id)}
                 onToggleDetails={() => setShowDetails(!showDetails)}
-                onToggleSubtasks={() => setExpanded(!expanded)}
                 showDetails={showDetails}
-                expanded={expanded}
               />
             </div>
           </div>
@@ -155,8 +150,6 @@ export default function TaskItem({
           {/* Details section */}
           {showDetails && <TaskDetails task={task} onUpdateTask={onUpdateTask} />}
 
-          {/* Subtasks section */}
-          {expanded && <TaskSubtasks task={task} onUpdateTask={onUpdateTask} />}
         </div>
       )}
     </div>

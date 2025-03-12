@@ -1,11 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Edit, Trash, ChevronDown, ChevronUp } from "lucide-react"
-import type { Task } from "@/lib/types"
+import { Edit, Trash } from "lucide-react"
 
 interface TaskActionsProps {
-  task: Task
   onEdit: () => void
   onDelete: () => void
   onToggleDetails: () => void
@@ -13,7 +11,6 @@ interface TaskActionsProps {
 }
 
 export default function TaskActions({
-  task,
   onEdit,
   onDelete,
   onToggleDetails,
